@@ -58,7 +58,7 @@
   <p class="label">{label}</p>
   <RecipeList recipes={recipesOfTheDay} on:remove={removeRecipe} />
   <div>
-    {#if isShowAddrecipes}
+    {#if isShowAddrecipes && availableRecipes.length > 0}
       <RecipeAdd
         on:close={hideAddrecipes}
         recipes={availableRecipes}
