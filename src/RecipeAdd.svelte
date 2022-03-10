@@ -1,11 +1,11 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { Dish } from "./store/interface/Dish";
+  import type { Recipe } from "./store/interface/Recipe";
 
-  export let dishes: Dish[] = [];
+  export let recipes: Recipe[] = [];
   const dispatch = createEventDispatcher();
 
-  let selectedDishToAdd: string = "";
+  let selectedRecipeToAdd: string = "";
 
   const close = () => {
     dispatch("close");
@@ -13,16 +13,16 @@
 
   const add = () => {
     dispatch("add", {
-      dish: selectedDishToAdd,
+      recipe: selectedRecipeToAdd,
     });
   };
 </script>
 
 <button type="button" on:click={close}>-</button>
-<select bind:value={selectedDishToAdd}>
+<select bind:value={selectedRecipeToAdd}>
   <option value="">Choisissez un plat</option>
-  {#each dishes as dish}
-    <option value={dish.title}>{dish.title}</option>
+  {#each recipes as recipe}
+    <option value={recipe.title}>{recipe.title}</option>
   {/each}
 </select>
 <button type="button" on:click={() => add()}>Ajouter</button>

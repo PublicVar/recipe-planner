@@ -3,7 +3,7 @@
   import Day from "./Day.svelte";
   import type { Weekday } from "./store/interface/Weekday";
   import Modal from "./ui/Modal.svelte";
-  import { dishes } from "./store/dishes";
+  import { recipes } from "./store/recipes";
 
   let isShowCreateRecipe = false;
 
@@ -18,7 +18,7 @@
   ];
 
   const addRecipe = ({ detail }) => {
-    dishes.add(detail);
+    recipes.add(detail);
     isShowCreateRecipe = false;
   };
 </script>

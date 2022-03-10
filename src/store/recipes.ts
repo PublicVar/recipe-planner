@@ -1,7 +1,7 @@
 import { writable } from "svelte/store";
-import type { Dish } from "./interface/Dish";
+import type { Recipe } from "./interface/Recipe";
 
-function createDishes() {
+function createRecipes() {
   const { update, set, subscribe } = writable([
     {
       title: "Rougaille saucisse",
@@ -29,17 +29,17 @@ function createDishes() {
     update,
     set,
     subscribe,
-    add: (dish: Dish): void =>
-      update((dishes: Dish[]): Dish[] => {
+    add: (recipe: Recipe): void =>
+      update((recipes: Recipe[]): Recipe[] => {
         if (
           undefined ===
-          dishes.find((theDish: Dish) => theDish.title === dish.title)
+          recipes.find((theRecipe: Recipe) => theRecipe.title === recipe.title)
         ) {
-          return [...dishes, dish];
+          return [...recipes, recipe];
         }
-        return dishes;
+        return recipes;
       }),
   };
 }
 
-export const dishes = createDishes();
+export const recipes = createRecipes();

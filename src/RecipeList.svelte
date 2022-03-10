@@ -1,24 +1,24 @@
 <script lang="ts">
-  import type Dish from "./store/interface/Dish";
+  import type { Recipe } from "./store/interface/Recipe";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
 
-  export let dishes: Dish[] = [];
+  export let recipes: Recipe[] = [];
 
-  export let onRemove = (dish: Dish) => {
+  export let onRemove = (recipe: Recipe) => {
     dispatch("remove", {
-      dish,
+      recipe,
     });
   };
 </script>
 
-{#each dishes as dish (dish.title)}
+{#each recipes as recipe (recipe.title)}
   <div>
     <p>
-      {dish.title}
+      {recipe.title}
     </p>
-    <button class="delete" on:click={() => onRemove(dish)}>&times;</button>
+    <button class="delete" on:click={() => onRemove(recipe)}>&times;</button>
   </div>
 {:else}
   <div>

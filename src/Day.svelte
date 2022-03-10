@@ -1,70 +1,72 @@
 <script lang="ts">
   import { planning } from "./store/planning";
-  import { dishes } from "./store/dishes";
-  import type { Dish } from "./store/interface/Dish";
+  import { recipes } from "./store/recipes";
+  import type { Recipe } from "./store/interface/Recipe";
   import type { PlanningLine } from "./store/interface/Planning";
-  import DishList from "./DishList.svelte";
-  import DishAdd from "./DishAdd.svelte";
+  import RecipeList from "./RecipeList.svelte";
+  import RecipeAdd from "./RecipeAdd.svelte";
 
   export let key: string;
   export let label: string;
 
-  let dishesOfTheDay: Dish[] = [];
-  let isShowAddDishes: boolean = false;
+  let recipesOfTheDay: Recipe[] = [];
+  let isShowAddrecipes: boolean = false;
 
-  $: availableDishes = $dishes.filter(
-    (dish: Dish) =>
+  $: availableRecipes = $recipes.filter(
+    (recipe: Recipe) =>
       undefined ===
-      dishesOfTheDay.find((dayDish: Dish) => dish.title === dayDish.title)
+      recipesOfTheDay.find(
+        (dayRecipe: Recipe) => recipe.title === dayRecipe.title
+      )
   );
 
   $: {
     const day: PlanningLine = $planning.lines.find((line) => key === line.day);
     if (day) {
-      dishesOfTheDay = day.dishes;
+      recipesOfTheDay = day.recipes;
     }
   }
 
-  const showAddDishes = () => {
-    isShowAddDishes = true;
+  const showAddrecipes = () => {
+    isShowAddrecipes = true;
   };
 
-  const hideAddDishes = () => {
-    isShowAddDishes = false;
+  const hideAddrecipes = () => {
+    isShowAddrecipes = false;
   };
 
-  const addDish = (event) => {
-    const selectedDishToAdd = event.detail.dish;
-    if (selectedDishToAdd) {
-      const newDish = $dishes.find(
-        (theDish: Dish) => theDish.title === selectedDishToAdd
+  const addRecipe = (event) => {
+    const selectedRecipeToAdd = event.detail.recipe;
+    if (selectedRecipeToAdd) {
+      const newRecipe = $recipes.find(
+        (theRecipe: Recipe) => theRecipe.title === selectedRecipeToAdd
       );
-      planning.addDishToADay(key, newDish);
+      planning.addRecipeToADay(key, newRecipe);
     }
   };
 
-  const removeDish = (event) => {
-    const dish = event.detail.dish;
-    const dishToRemove = $dishes.find(
-      (theDish: Dish) => theDish.title === dish.title
+  const removeRecipe = (event) => {
+    const recipe = event.detail.recipe;
+    const recipeToRemove = $recipes.find(
+      (theRecipe: Recipe) => theRecipe.title === recipe.title
     );
-    planning.removeDishFromADay(key, dishToRemove);
+    planning.removeRecipeFromADay(key, recipeToRemove);
   };
 </script>
 
 <div class="day">
   <p class="label">{label}</p>
-  <DishList dishes={dishesOfTheDay} on:remove={removeDish} />
+  <RecipeList recipes={recipesOfTheDay} on:remove={removeRecipe} />
   <div>
-    {#if isShowAddDishes}
-      <DishAdd
-        on:close={hideAddDishes}
-        dishes={availableDishes}
-        on:add={addDish}
+    {#if isShowAddrecipes}
+      <RecipeAdd
+        on:close={hideAddrecipes}
+        recipes={availableRecipes}
+        on:add={addRecipe}
       />
     {/if}
-    {#if !isShowAddDishes}
-      <button class="add" type="button" on:click={showAddDishes}> + </button>
+    {#if !isShowAddrecipes}
+      <button class="add" type="button" on:click={showAddrecipes}> + </button>
     {/if}
   </div>
 </div>
