@@ -19,10 +19,16 @@
 </script>
 
 <button type="button" on:click={close}>-</button>
-<select bind:value={selectedRecipeToAdd}>
+<select bind:value={selectedRecipeToAdd} class="select">
   <option value="">Choisissez un plat</option>
   {#each recipes as recipe}
     <option value={recipe.title}>{recipe.title}</option>
   {/each}
 </select>
 <button type="button" on:click={() => add()}>Ajouter</button>
+
+<style>
+  .select {
+    width: auto;
+  }
+</style>

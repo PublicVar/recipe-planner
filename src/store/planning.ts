@@ -3,12 +3,14 @@ import type { Planning, PlanningLine } from "./interface/Planning";
 import type { Recipe } from "./interface/Recipe";
 
 function createPlanning() {
-  const { subscribe, update, set } = writable({
-    lines: [
-      { day: "monday", recipes: [{ title: "Rougaille saucisse" }] },
-      { day: "wednesday", recipes: [{ title: "Rougaille saucisse" }] },
-    ],
-  });
+  const persistedPlanning: Planning = JSON.parse(
+    localStorage.getItem("planning")
+  );
+  const defaultPlanning = { lines: [] };
+
+  const { subscribe, update, set } = writable(
+    persistedPlanning ?? defaultPlanning
+  );
 
   return {
     subscribe,
@@ -69,6 +71,11 @@ function createPlanning() {
               }
         ),
       })),
+    persist: (): void =>
+      update((thePlanning: Planning) => {
+        localStorage.setItem("planning", JSON.stringify(thePlanning));
+        return thePlanning;
+      }),
   };
 }
 

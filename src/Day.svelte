@@ -21,7 +21,7 @@
   );
 
   $: {
-    const day: PlanningLine = $planning.lines.find((line) => key === line.day);
+    const day: PlanningLine = $planning?.lines.find((line) => key === line.day);
     if (day) {
       recipesOfTheDay = day.recipes;
     }

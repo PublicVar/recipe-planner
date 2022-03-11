@@ -2,7 +2,10 @@ import { writable } from "svelte/store";
 import type { Recipe } from "./interface/Recipe";
 
 function createRecipes() {
-  const { update, set, subscribe } = writable([
+  const persistedRecipes: Recipe[] = JSON.parse(
+    localStorage.getItem("recipes")
+  );
+  const defaultRecipes: Recipe[] = [
     {
       title: "Rougaille saucisse",
       ingredients: [
@@ -23,20 +26,26 @@ function createRecipes() {
         },
       ],
     },
-  ]);
+  ];
+
+  const { update, set, subscribe } = writable(
+    persistedRecipes ?? defaultRecipes
+  );
 
   return {
     update,
     set,
     subscribe,
     add: (recipe: Recipe): void =>
-      update((recipes: Recipe[]): Recipe[] => {
+      update((recipes: Recipe[]) => {
         if (
           undefined ===
           recipes.find((theRecipe: Recipe) => theRecipe.title === recipe.title)
         ) {
           return [...recipes, recipe];
         }
+
+        localStorage.setItem("recipes", JSON.stringify(recipes));
         return recipes;
       }),
   };

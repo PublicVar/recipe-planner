@@ -4,6 +4,7 @@
   import type { Weekday } from "./store/interface/Weekday";
   import Modal from "./ui/Modal.svelte";
   import { recipes } from "./store/recipes";
+  import { planning } from "./store/planning";
 
   let isShowCreateRecipe = false;
 
@@ -21,6 +22,8 @@
     recipes.add(detail);
     isShowCreateRecipe = false;
   };
+
+  const persistPlanning = () => planning.persist();
 </script>
 
 <main>
@@ -43,7 +46,7 @@
           >
           Ajouter une recette
         </button>
-        <button class="btn-icon">
+        <button class="btn-icon" on:click={persistPlanning}>
           <svg
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
