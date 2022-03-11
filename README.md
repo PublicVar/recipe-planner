@@ -25,3 +25,4 @@ Soon :
 - Save the planning in local storage
 - App theming
 - Add transition/animation
+- Add web accessibility

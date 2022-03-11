@@ -77,13 +77,10 @@
     font-size: 1.25em;
   }
   .day {
-    border-bottom: 1px solid #eee;
     padding-bottom: 1em;
   }
   button {
     background-color: white;
-    border-color: rgb(208, 212, 255);
-    color: rgb(99, 111, 245);
     cursor: pointer;
     transition: background-color 0.5s ease-out;
   }

@@ -28,7 +28,7 @@
 <form on:submit|preventDefault={create}>
   <label for="recipe_name">Nom</label>
   <input type="text" id="recipe_name" bind:value={title} required />
-
+  <p class="label">Ingrédient :</p>
   {#if ingredients.length}
     <ul>
       {#each ingredients as ingredient}
@@ -45,6 +45,25 @@
   {/if}
 
   <IngredientAdd on:add={addIngredient} />
-
-  <button type="submit" on:click={create}>Créer</button>
+  <div class="actions">
+    <button type="submit" on:click={create} class="button-submit">Créer</button>
+  </div>
 </form>
+
+<style>
+  form {
+    text-align: left;
+  }
+
+  .label {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+  .button-submit {
+    margin: 20px 0;
+    width: 100%;
+  }
+  .actions {
+    text-align: center;
+  }
+</style>

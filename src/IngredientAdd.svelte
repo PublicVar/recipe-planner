@@ -22,9 +22,8 @@
   };
 </script>
 
-<div>
+<div class="block">
   <form on:submit|preventDefault={add}>
-    <p>Ajouter un ingrédient</p>
     <div>
       <label for="ingredient_name">Nom</label>
       <input type="text" id="ingredient_name" bind:value={name} required />
@@ -42,9 +41,15 @@
         {/each}
       </select>
     </div>
-    <button type="submit">Ajouter</button>
+    <button type="submit" class="button">Ajouter</button>
   </form>
 </div>
 
 <style>
+  .block {
+    border-bottom: 1px solid #ddd;
+  }
+  .button {
+    margin-bottom: 20px;
+  }
 </style>
