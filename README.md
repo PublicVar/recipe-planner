@@ -21,8 +21,9 @@ You can add recipes manually.
 
 Soon :
 
+- Editing recipes
 - Generate shopping list based on the week's recipe
-- Save the planning in local storage
+- ~~Save the planning in local storage~~
 - App theming
 - Add transition/animation
 - Add web accessibility
