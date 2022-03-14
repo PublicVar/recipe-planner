@@ -6,8 +6,14 @@
 
   export let recipes: Recipe[] = [];
 
-  export let onRemove = (recipe: Recipe) => {
+  const onRemove = (recipe: Recipe) => {
     dispatch("remove", {
+      recipe,
+    });
+  };
+
+  const onEdit = (recipe: Recipe) => {
+    dispatch("edit", {
       recipe,
     });
   };
@@ -19,6 +25,7 @@
       {recipe.title}
     </p>
     <button class="delete" on:click={() => onRemove(recipe)}>&times;</button>
+    <button class="edit" on:click={() => onEdit(recipe)} />
   </div>
 {:else}
   <div>

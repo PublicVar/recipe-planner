@@ -52,11 +52,19 @@
     );
     planning.removeRecipeFromADay(key, recipeToRemove);
   };
+
+  const editRecipe = ({ detail }) => {
+    const { recipe } = detail;
+  };
 </script>
 
 <div class="day">
   <p class="label">{label}</p>
-  <RecipeList recipes={recipesOfTheDay} on:remove={removeRecipe} />
+  <RecipeList
+    recipes={recipesOfTheDay}
+    on:remove={removeRecipe}
+    on:edit={editRecipe}
+  />
   <div>
     {#if isShowAddrecipes && availableRecipes.length > 0}
       <RecipeAdd

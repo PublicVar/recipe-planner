@@ -1,13 +1,30 @@
 <script lang="ts">
   import unitList from "./store/unit-list";
   import { createEventDispatcher } from "svelte";
+  import type { Ingredient } from "./store/interface/Ingredient";
+  export let ingredient: Ingredient = null;
   const dispatch = createEventDispatcher();
   let name: string = "";
   let quantity: number = 0;
-  let unit: string = unitList[0].notation;
+  let unit: string = "";
+  let id: string = null;
 
-  const add = () => {
-    dispatch("add", {
+  $: if (null === id) {
+    id = ingredient?.id ?? id;
+  }
+  $: if ("" === name) {
+    name = ingredient?.name ?? name;
+  }
+  $: if (0 === quantity) {
+    quantity = ingredient?.quantity ?? quantity;
+  }
+  $: if ("" === unit) {
+    unit = ingredient?.unit ?? unitList[0].notation;
+  }
+
+  const submit = () => {
+    dispatch("submit", {
+      id,
       name,
       quantity,
       unit,
@@ -19,11 +36,13 @@
     name = "";
     quantity = 0;
     unit = "";
+    id = null;
+    ingredient = null;
   };
 </script>
 
 <div class="block">
-  <form on:submit|preventDefault={add}>
+  <form on:submit|preventDefault={submit}>
     <div>
       <label for="ingredient_name">Nom</label>
       <input type="text" id="ingredient_name" bind:value={name} required />
@@ -41,7 +60,7 @@
         {/each}
       </select>
     </div>
-    <button type="submit" class="button">Ajouter</button>
+    <button type="submit" class="button">{id ? "Modifier" : "Ajouter"}</button>
   </form>
 </div>
 

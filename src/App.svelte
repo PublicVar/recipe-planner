@@ -1,5 +1,5 @@
 <script lang="ts">
-  import CreateRecipe from "./RecipeCreate.svelte";
+  import RecipeForm from "./RecipeForm.svelte";
   import Day from "./Day.svelte";
   import type { Weekday } from "./store/interface/Weekday";
   import Modal from "./ui/Modal.svelte";
@@ -61,8 +61,8 @@
     </div>
   </div>
   <div class="main">
-    <Modal isShow={isShowCreateRecipe} title="Ajouter une recette">
-      <CreateRecipe on:create={addRecipe} />
+    <Modal bind:isShow={isShowCreateRecipe} title="Ajouter une recette">
+      <RecipeForm on:submit={addRecipe} />
     </Modal>
     {#each days as day (day.key)}
       <Day {...day} />
