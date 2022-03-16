@@ -25,7 +25,6 @@
       {recipe.title}
     </p>
     <button class="delete" on:click={() => onRemove(recipe)}>&times;</button>
-    <button class="edit" on:click={() => onEdit(recipe)} />
   </div>
 {:else}
   <div>

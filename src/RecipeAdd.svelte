@@ -5,7 +5,6 @@
   export let recipes: Recipe[] = [];
   const dispatch = createEventDispatcher();
   let selectedRecipeToAdd: string;
-  $: selectedRecipeToAdd = recipes[0]?.title ?? "";
 
   const close = () => {
     dispatch("close");
@@ -15,6 +14,7 @@
     dispatch("add", {
       recipe: selectedRecipeToAdd,
     });
+    selectedRecipeToAdd = "";
   };
 </script>
 
