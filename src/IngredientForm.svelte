@@ -9,6 +9,7 @@
   let unit: string = "";
   let id: string = null;
 
+  //We have to make the conditions otherwise the inputs never change
   $: if (null === id) {
     id = ingredient?.id ?? id;
   }

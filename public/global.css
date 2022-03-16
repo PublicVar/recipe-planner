@@ -37,7 +37,10 @@ label {
   display: block;
   margin: 5px 0;
 }
-
+ul {
+  padding: 0;
+  list-style: none;
+}
 input,
 button,
 select,
@@ -79,4 +82,26 @@ button:focus {
 input[type="text"],
 select {
   width: 100%;
+}
+
+/**
+ * Button with icons
+ */
+.btn-icon {
+  font-size: 0;
+  border: none;
+  fill: var(--main-color);
+}
+
+.btn-icon svg {
+  transition: fill 0.5s ease-out;
+}
+
+.btn-icon.primary {
+  width: 20px;
+  height: 23px;
+  border: 1px solid var(--main-color);
+}
+.btn-icon.primary svg {
+  width: 60%;
 }

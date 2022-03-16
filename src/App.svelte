@@ -80,24 +80,23 @@
   .btn-icon {
     width: 30px;
     height: 30px;
-    border: none;
     margin: 0;
     padding: 0;
-    font-size: 0;
   }
+
+  .btn-icon svg {
+    fill: var(--main-color) !important;
+    background-color: var(--secondary-color);
+  }
+  .btn-icon:hover > svg {
+    fill: #fff !important;
+  }
+
   .top-actions {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-  }
-  .btn-icon svg {
-    fill: var(--main-color) !important;
-    background-color: var(--secondary-color);
-    transition: fill 0.5s ease-out;
-  }
-  .btn-icon:hover > svg {
-    fill: #fff !important;
   }
 
   .banner {
