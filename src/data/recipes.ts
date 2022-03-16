@@ -7,7 +7,7 @@ export default [
     ingredients: [
       {
         id: idGenerator(),
-        name: "",
+        name: "Oeuf",
         quantity: 4,
         unit: "pièce",
       },
